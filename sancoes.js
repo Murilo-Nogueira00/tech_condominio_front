@@ -1,6 +1,6 @@
 /*
   --------------------------------------------------------------------------------------
-  Função para colocar um item na lista do servidor via requisição POST
+  Função para colocar uma ocorrência na lista do servidor via requisição POST
   --------------------------------------------------------------------------------------
 */
 const postItem = async (inputMorador, inputMotivo, inputData) => {

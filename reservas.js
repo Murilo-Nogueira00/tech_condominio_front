@@ -1,6 +1,6 @@
 /*
   --------------------------------------------------------------------------------------
-  Função para colocar um item na lista do servidor via requisição POST
+  Função para colocar uma reserva na lista do servidor via requisição POST
   --------------------------------------------------------------------------------------
 */
 const postItem = async (inputApartamento, inputEspaco, inputData) => {

@@ -27,7 +27,7 @@ getList()
 
 /*
   --------------------------------------------------------------------------------------
-  Função para colocar um item na lista do servidor via requisição POST
+  Função para colocar um morador na lista do servidor via requisição POST
   --------------------------------------------------------------------------------------
 */
 const postItem = async (inputMorador, inputApartamento) => {
@@ -52,7 +52,7 @@ const postItem = async (inputMorador, inputApartamento) => {
 
 /*
   --------------------------------------------------------------------------------------
-  Função para criar um botão close para cada item da lista
+  Função para criar um botão close para cada morador da lista
   --------------------------------------------------------------------------------------
 */
 const insertButton = (parent) => {
@@ -66,12 +66,11 @@ const insertButton = (parent) => {
 
 /*
   --------------------------------------------------------------------------------------
-  Função para remover um item da lista de acordo com o click no botão close
+  Função para remover um morador da lista de acordo com o click no botão close
   --------------------------------------------------------------------------------------
 */
 const removeElement = () => {
   let close = document.getElementsByClassName("close");
-  // var table = document.getElementById('myTable');
   let i;
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function () {
@@ -88,7 +87,7 @@ const removeElement = () => {
 
 /*
   --------------------------------------------------------------------------------------
-  Função para deletar um item da lista do servidor via requisição DELETE
+  Função para deletar um morador da lista do servidor via requisição DELETE
   --------------------------------------------------------------------------------------
 */
 const deleteItem = (item) => {
