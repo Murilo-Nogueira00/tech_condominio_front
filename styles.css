@@ -5,12 +5,12 @@ li {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background: #BBBBBB;
+    background: #fafafa;
 }
 
 /* ******************CABEÇALHO****************** */
 header {
-    background: #BBBBBB;
+    background: #fafafa;
     padding: 20px 0;
 
 }
@@ -24,13 +24,14 @@ header {
 
 nav {
     position: absolute;
-    top: 101.14px;
+    top: 156px;
     right: 0;
     margin-right: 30px;
 }
 
 img {
     width: 15%;
+    top: 145px;
 }
 
 nav li {
@@ -41,41 +42,80 @@ nav li {
 nav a {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
     color: #000000;
     text-decoration: none;
 }
 
 nav a:hover {
-    color: #C78C19;
-    text-decoration: underline;
+    color: #818181;
+    text-decoration: none;
 }
 
 nav a:active {
-    color: #088C19;
-}
-
-.banner {
-    width: 100%;
-    opacity: 0.8;
+    color: #535353;
 }
 
 .title {
-    color: black;
-    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
     width: 100%;
-    background: #BBBBBB;
+    background: #000000;
     display: inline-block;
     padding: 2px 0px;
-    position: sticky;
+    position: static;
     text-align: center;
     top: 0px;
 }
 
 /* ******************FIM DO CABEÇALHO****************** */
+.home {
+    width: 940px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.home li {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    width: 20%;
+    vertical-align: top;
+    margin: 0 1.5%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    border: 2px solid #000000;
+    border-radius: 5px 15px 15px 15px;
+}
+
+.home li:hover {
+    border-color: #409407;
+}
+
+.home li:active {
+    border-color: #0ad626;
+}
+
+.home li:hover h2 {
+    font-size: 20px;
+}
+
+.home img {
+    height: 90px;
+    width: 90px;
+}
+
+.home h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.home-descricao {
+    font-size: 18px;
+}
 
 .newItem {
-    background: #BBBBBB;
+    background: #fafafa;
     padding: 30px 40px;
     color: white;
     display: flex;
@@ -89,7 +129,7 @@ nav a:active {
 }
 
 .newSearch {
-    background: #BBBBBB;
+    background: #fafafa;
     padding: 30px 40px;
     color: white;
     text-align: center;
@@ -147,6 +187,13 @@ nav a:active {
     /* Adicionado para centralizar o texto */
 }
 
+.lixeira-img {
+    display: block;
+    margin: 0 auto;
+    width: 35%;
+    height: auto;
+}
+
 .close:hover {
     color: #f44336;
     font-weight: bolder;
@@ -182,10 +229,13 @@ tr:hover {
     background: rgb(200, 199, 199);
 }
 
+/* ******************RODAPÉ****************** */
+
 footer {
     text-align: center;
     margin-top: 50px;
     padding: 1px;
+    background: rgb(78, 78, 78);
 }
 
 .copyright {

@@ -48,6 +48,13 @@ const newItem = () => {
                     \nMotivo: ${ocorrencia.motivo}`;
                     alert(mensagem);
                 }
+
+                if(data.ocorrência[1]) {
+                    const multa = data.ocorrência[1];
+                    const mensagem = `${multa.tipo} registrada para o morador do apartamento: ${multa.morador}. 
+                    \nMotivo: ${multa.motivo}`;
+                    alert(mensagem);                    
+                }
             })
             .catch((error) => {
                 alert(error);
