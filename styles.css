@@ -177,7 +177,8 @@ nav a {
 }
 
 .addBtn:hover {
-    background-color: #4b0082;
+    background: linear-gradient(160deg, #0996b9, #1f07a5);
+    color: rgb(245, 209, 209);
 }
 
 .newSearch {
@@ -329,8 +330,8 @@ footer img {
 
 .toast {
     position: fixed;
-    top: 10%;
-    right: 10%;
+    top: 8%;
+    right: 4%;
     background-color: #333;
     color: white;
     padding: 15px;
@@ -341,12 +342,10 @@ footer img {
 
 .toast.success {
     background-color: #008000;
-    /* Verde Forte */
 }
 
 .toast.error {
     background-color: #FF0000;
-    /* Vermelho Forte */
 }
 
 @keyframes fade-out {
@@ -354,7 +353,7 @@ footer img {
         opacity: 1;
     }
 
-    80% {
+    50% {
         opacity: 1;
     }
 
