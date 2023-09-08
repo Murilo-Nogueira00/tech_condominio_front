@@ -3,7 +3,7 @@
   Função para colocar uma reserva na lista do servidor via requisição POST
   --------------------------------------------------------------------------------------
 */
-const postItem = async (inputApartamento, inputEspaco, inputData) => {
+const postReserva = async (inputApartamento, inputEspaco, inputData) => {
     const formData = new FormData();
     formData.append('morador', inputApartamento);
     formData.append('espaco', inputEspaco);
@@ -25,13 +25,41 @@ const postItem = async (inputApartamento, inputEspaco, inputData) => {
 
 /*
   --------------------------------------------------------------------------------------
+  Função para enviar um email após reserva via requisição POST
+  --------------------------------------------------------------------------------------
+*/
+const postMail = async (inputApartamento, inputEspaco, inputData, inputEmail) => {
+    const formData = new FormData();
+    formData.append('morador', inputApartamento);
+    formData.append('espaco', inputEspaco);
+    formData.append('data', inputData);
+    formData.append('email', inputEmail);
+
+    let url = 'http://127.0.0.1:8000/email/reserva';
+    const response = await fetch(url, {
+        method: 'post',
+        body: formData
+    });
+    if (!response.ok) {
+        return response.json().then((data) => {
+            var message = data.message;
+            alert("Não deu para enviar o email");
+            return Promise.reject(new Error(message));
+        });
+    }
+    return await response.json();
+}
+
+/*
+  --------------------------------------------------------------------------------------
   Função para adicionar uma nova reserva informando apartamento, espaço e data 
   --------------------------------------------------------------------------------------
 */
-const newItem = () => {
+const newReserva = () => {
     let inputApartamento = document.getElementById("apartamento").value;
     let inputEspaco = document.getElementById("espaco").value;
     let inputData = document.getElementById("data").value;
+    let email;
 
     if (inputApartamento === '') {
         alert("Escreva o apartamento do morador!");
@@ -40,7 +68,7 @@ const newItem = () => {
     } else if (inputData === '') {
         alert("Informe a data da reserva!");
     } else {
-        postItem(inputApartamento, inputEspaco, inputData)
+        postReserva(inputApartamento, inputEspaco, inputData)
             .then((data) => {
                 if (data && data.financeiro && data.financeiro.length > 0) {
                     const reserva = data.financeiro[0];
@@ -48,6 +76,11 @@ const newItem = () => {
                     \nValor da reserva: R$ ${reserva["valor da reserva"]}`;
                     alert(mensagem);
                 }
+                return getMorador(inputApartamento);
+            })
+            .then(data => {
+                email = data.email;
+                return postMail(inputApartamento, inputEspaco, inputData, email);
             })
             .catch((error) => {
                 alert(error);
@@ -55,9 +88,10 @@ const newItem = () => {
     }
 }
 
+
 const updateTable = (reservas) => {
     // Limpar as linhas de dados da tabela
-    const table = document.getElementById("myTable");
+    const table = document.getElementById("reservaTable");
     const rows = table.querySelectorAll("tr:not(:first-child)");
     rows.forEach((row) => row.remove());
 

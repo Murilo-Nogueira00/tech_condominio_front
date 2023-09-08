@@ -1,3 +1,5 @@
+
+
 /*
   --------------------------------------------------------------------------------------
   Função para obter a lista existente do servidor via requisição GET
@@ -10,12 +12,37 @@ const getList = async () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      data.morador.forEach(item => insertList(item.nome, item.apartamento))
+      data.morador.forEach(item => insertMoradoresList(item.nome, item.apartamento, item.email))
     })
     .catch((error) => {
       console.error('Error:', error);
     });
 }
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para obter a lista existente do servidor via requisição GET
+  --------------------------------------------------------------------------------------
+*/
+window.getMorador = async (apartamento) => {
+  let url = `http://127.0.0.1:5000/morador?apartamento=${apartamento}`;
+
+  try {
+    const response = await fetch(url, { method: 'get' });
+
+    if (!response.ok) {
+      throw new Error('Erro na resposta da rede');
+    }
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
 
 /*
   --------------------------------------------------------------------------------------
@@ -30,10 +57,11 @@ getList()
   Função para colocar um morador na lista do servidor via requisição POST
   --------------------------------------------------------------------------------------
 */
-const postItem = async (inputMorador, inputApartamento) => {
+const postMorador = async (inputMorador, inputApartamento, inputEmail) => {
   const formData = new FormData();
   formData.append('nome', inputMorador);
   formData.append('apartamento', inputApartamento);
+  formData.append('email', inputEmail);
 
   let url = 'http://127.0.0.1:5000/morador';
   const response = await fetch(url, {
@@ -104,19 +132,20 @@ const deleteItem = (item) => {
 
 /*
   --------------------------------------------------------------------------------------
-  Função para adicionar um novo morador, com nome e apartamento 
+  Função para adicionar um novo morador, com nome, apartamento e email 
   --------------------------------------------------------------------------------------
 */
-const newItem = () => {
+const newMorador = () => {
   let inputMorador = document.getElementById("novoMorador").value;
   let inputApartamento = document.getElementById("novoApartamento").value;
+  let inputEmail = document.getElementById("novoEmail").value;
 
-  if (inputMorador === '' || inputApartamento === '') {
-    alert("Escreva o nome e o apartamento do morador!");
+  if (inputMorador === '' || inputApartamento === '' || inputEmail === '') {
+    alert("Preencha todos os campos!");
   } else {
-    postItem(inputMorador, inputApartamento)
+    postMorador(inputMorador, inputApartamento, inputEmail)
       .then(() => {
-        insertList(inputMorador, inputApartamento);
+        insertMoradoresList(inputMorador, inputApartamento, inputEmail);
         alert("Morador adicionado!");
       })
       .catch((error) => {
@@ -128,14 +157,15 @@ const newItem = () => {
 
 
 
+
 /*
   --------------------------------------------------------------------------------------
   Função para inserir dados de Moradores na lista apresentada
   --------------------------------------------------------------------------------------
 */
-const insertList = (nameMorador, apartamento) => {
-  item = [nameMorador, apartamento]
-  var table = document.getElementById('myTable');
+const insertMoradoresList = (nameMorador, apartamento, email) => {
+  item = [nameMorador, apartamento, email];
+  var table = document.getElementById('moradoresTable');
   var row = table.insertRow();
 
   for (var i = 0; i < item.length; i++) {
