@@ -1,20 +1,15 @@
-/* Reset CSS para listas */
-ul,
-li {
-    margin: 0;
+/* Reset CSS */
+body, html {
     padding: 0;
-    list-style-type: none;
 }
 
-
-/* ******************CABEÇALHO****************** */
-body,
 ul,
 li {
-    /* ... mantenha as propriedades existentes ... */
+    list-style-type: none;
     padding: 0 30px;
-    /* Adicionado para dar um pouco de espaço nas laterais */
 }
+/* ******************CABEÇALHO****************** */
+
 
 /* Cabeçalho e Menu */
 header {
@@ -35,7 +30,6 @@ nav ul {
     list-style-type: none;
 }
 
-
 nav a {
     text-transform: uppercase;
     font-weight: bold;
@@ -44,21 +38,146 @@ nav a {
     text-decoration: none;
 }
 
-.page-title {
-    padding: 30px 0;
+.title-bg {
+    position: absolute;
+    top: 110px;
+    left: 0%;
+    width: 28%;
+    height: 70px;
+    background-color: rgba(128, 128, 128, 0.5);
+    z-index: 0;
+}
+
+.page-title h2,
+.page-title p {
+    position: absolute;
+    color: white;
+    left: 2%;
 }
 
 .page-title h2 {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    margin-top: 90px;
 }
 
 .page-title p {
-    font-size: 20px;
+    margin-top: 130px;
+}
+
+#header-image {
+    width: 100%;
+    margin-top: 15px;
 }
 
 /* ******************FIM DO CABEÇALHO****************** */
+
+.add-box {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    max-width: 900px;
+    margin: -70px auto 50px;
+    position: relative;
+    z-index: 10;
+}
+
+.newItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.add-box .newItem .input-group input[type="text"] {
+    flex: 1 !important;
+    margin-right: 10px !important;
+    height: 35px !important;
+    max-width: 180px !important;
+    width: 100% !important;
+    border: 1px solid rgb(35, 32, 24) !important;
+    padding: 5px 10px !important;
+    font-size: 16px !important;
+}
+
+.add-box .newItem .input-group label {
+    font-weight: bold !important;
+    margin-bottom: 5px !important;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.newItem label {
+    margin-bottom: 5px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.newItem input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+    height: 40px;
+    max-width: 200px;
+}
+
+.consult-box {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    max-width: 500px;
+    margin: -70px auto 50px;
+    position: relative;
+    z-index: 10;
+}
+
+.addBtn {
+    background: linear-gradient(160deg, #a00ee4, #0a0ef1);
+    height: 38px;
+    padding: 0 20px;
+    line-height: 35px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+    position:static;
+    margin-top: 25px;
+    left: 75%;
+}
+
+.addBtn:hover {
+    background-color: #4b0082;
+}
+
+.newSearch {
+    background: linear-gradient(160deg, #a00ee4, #0a0ef1);
+    height: 40px;
+    width: 30px;
+    padding: 0 20px;
+    line-height: 35px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.newSearch:hover {
+    background-color: #4b0082;
+}
+
 .home {
     width: 940px;
     margin: 0 auto;
@@ -104,34 +223,6 @@ nav a {
     font-size: 18px;
 }
 
-.newItem {
-    background: #fafafa;
-    padding: 30px 40px;
-    color: white;
-    display: flex;
-    justify-content: center;
-}
-
-.newItem:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.newSearch {
-    background: #fafafa;
-    padding: 30px 40px;
-    color: white;
-    text-align: center;
-    /* Adicionado para centralizar o conteúdo horizontalmente */
-}
-
-.newSearch:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
 #novoMorador {
     margin: 0;
     border: 1px solid rgb(35, 32, 24);
@@ -154,22 +245,6 @@ nav a {
     width: 8%;
     padding: 10px;
     font-size: 16px;
-}
-
-.addBtn {
-    padding: 9px 10px;
-    background-color: rgb(35, 32, 24);
-    color: white;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 2px;
-}
-
-.addBtn:hover {
-    background-color: #2ab53a;
-    color: white;
 }
 
 .items {

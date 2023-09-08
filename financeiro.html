@@ -32,17 +32,26 @@
                 </ul>
             </nav>
         </div>
+        <div class="title-bg"></div>
         <div class="page-title">
             <h2>FINANCEIRO</h2>
             <p>Consulte o valor do condomínio dos moradores</p>
         </div>
     </header>
 
-    <!-- Opções para adicionar um novo item -->
-    <section class="newItem">
-        <input type="text" id="apartamento" placeholder="Apartamento:">
-        <span onclick="newItem()" class="addBtn">Consultar</span>
-    </section>
+    <img id="header-image" src="https://i.imgur.com/x2nkDB0.jpg" alt="Imagem de fundo do cabeçalho">
+
+    <div class="consult-box">
+        <section class="newItem">
+            <div class="input-group">
+                <label for="apartamento">Apartamento</label>
+                <input type="text" id="apartamento" placeholder="Apartamento:">
+            </div>
+    
+            <span onclick="newItem()" class="addBtn">Consultar Registros</span>
+        </section>
+    </div>
+
 
     <!-- Tabela com items existentes -->
     <section class="items">

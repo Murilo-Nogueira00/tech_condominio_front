@@ -32,19 +32,35 @@
                 </ul>
             </nav>
         </div>
+        <div class="title-bg"></div>
         <div class="page-title">
             <h2>SANÇÕES</h2>
             <p>Registre ocorrências aos moradores</p>
         </div>
     </header>
 
-    <!-- Opções para adicionar um novo item -->
-    <section class="newItem">
-        <input type="text" id="motivo" placeholder="Motivo:">
-        <input type="text" id="apartamento" placeholder="Apartamento:">
-        <input type="text" id="data" placeholder="Data:">
-        <span onclick="newSancao()" class="addBtn">Adicionar</span>
-    </section>
+    <img id="header-image" src="https://i.imgur.com/x2nkDB0.jpg" alt="Imagem de fundo do cabeçalho">
+
+    <div class="add-box">
+        <section class="newItem">
+            <div class="input-group">
+                <label for="apartamento">Apartamento</label>
+                <input type="text" id="apartamento" placeholder="Apartamento:">
+            </div>
+    
+            <div class="input-group">
+                <label for="motivo">Motivo</label>
+                <input type="text" id="motivo" placeholder="Motivo:">
+            </div>
+    
+            <div class="input-group">
+                <label for="data">Data</label>
+                <input type="text" id="data" placeholder="Data:">
+            </div>
+    
+            <span onclick="newSancao()" class="addBtn">Adicionar ocorrência</span>
+        </section>
+    </div>
 
     <!-- Opções para consultar uma reserva -->
     <section class="newSearch">

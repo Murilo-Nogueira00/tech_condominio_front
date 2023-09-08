@@ -32,19 +32,35 @@
                 </ul>
             </nav>
         </div>
+        <div class="title-bg"></div>
         <div class="page-title">
             <h2>MORADORES</h2>
             <p>Cadastre novos moradores</p>
         </div>
     </header>
 
-    <!-- Opções para adicionar um novo morador -->
-    <section class="newItem">
-        <input type="text" id="novoMorador" placeholder="Morador:">
-        <input type="text" id="novoApartamento" placeholder="Apartamento:">
-        <input type="text" id="novoEmail" placeholder="Email:">
-        <span onclick="newMorador()" class="addBtn">Adicionar</span>
-    </section>
+    <img id="header-image" src="https://i.imgur.com/x2nkDB0.jpg" alt="Imagem de fundo do cabeçalho">
+
+    <div class="add-box">
+        <section class="newItem">
+            <div class="input-group">
+                <label for="novoMorador">Nome do morador</label>
+                <input type="text" id="novoMorador" placeholder="Morador:">
+            </div>
+        
+            <div class="input-group">
+                <label for="novoApartamento">Apartamento do morador</label>
+                <input type="text" id="novoApartamento" placeholder="Apartamento:">
+            </div>
+        
+            <div class="input-group">
+                <label for="novoEmail">Email do morador</label>
+                <input type="text" id="novoEmail" placeholder="Email:">
+            </div>
+        
+            <span onclick="newMorador()" class="addBtn">Adicionar morador</span>
+        </section>
+    </div>
 
     <!-- Tabela com items existentes -->
     <section class="items">
