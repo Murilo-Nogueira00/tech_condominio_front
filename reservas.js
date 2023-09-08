@@ -25,33 +25,6 @@ const postReserva = async (inputApartamento, inputEspaco, inputData) => {
 
 /*
   --------------------------------------------------------------------------------------
-  Função para enviar um email após reserva via requisição POST
-  --------------------------------------------------------------------------------------
-*/
-const postMail = async (inputApartamento, inputEspaco, inputData, inputEmail) => {
-    const formData = new FormData();
-    formData.append('morador', inputApartamento);
-    formData.append('espaco', inputEspaco);
-    formData.append('data', inputData);
-    formData.append('email', inputEmail);
-
-    let url = 'http://127.0.0.1:8000/email/reserva';
-    const response = await fetch(url, {
-        method: 'post',
-        body: formData
-    });
-    if (!response.ok) {
-        return response.json().then((data) => {
-            var message = data.message;
-            alert("Não deu para enviar o email");
-            return Promise.reject(new Error(message));
-        });
-    }
-    return await response.json();
-}
-
-/*
-  --------------------------------------------------------------------------------------
   Função para adicionar uma nova reserva informando apartamento, espaço e data 
   --------------------------------------------------------------------------------------
 */
@@ -62,11 +35,11 @@ const newReserva = () => {
     let email;
 
     if (inputApartamento === '') {
-        alert("Escreva o apartamento do morador!");
+        showToast("Escreva o apartamento do morador!", 'error');
     } else if (inputEspaco === '') {
-        alert("O espaço deve ser Churrasqueira ou Salão!");
+        showToast("O espaço deve ser Churrasqueira ou Salão!", 'error');
     } else if (inputData === '') {
-        alert("Informe a data da reserva!");
+        showToast("Informe a data da reserva!", 'error');
     } else {
         postReserva(inputApartamento, inputEspaco, inputData)
             .then((data) => {
@@ -74,7 +47,7 @@ const newReserva = () => {
                     const reserva = data.financeiro[0];
                     const mensagem = `Reserva do ${inputEspaco} realizada para o apartamento: ${reserva.apartamento}. 
                     \nValor da reserva: R$ ${reserva["valor da reserva"]}`;
-                    alert(mensagem);
+                    showToast(mensagem);
                 }
                 return getMorador(inputApartamento);
             })
@@ -83,11 +56,10 @@ const newReserva = () => {
                 return postMail(inputApartamento, inputEspaco, inputData, email);
             })
             .catch((error) => {
-                alert(error);
+                showToast(error.message || error, 'error');
             });
     }
 }
-
 
 const updateTable = (reservas) => {
     // Limpar as linhas de dados da tabela
@@ -149,4 +121,46 @@ const insertRow = (table, apartamento, espaco, data) => {
     cell1.textContent = apartamento;
     cell2.textContent = espaco;
     cell3.textContent = data;
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para enviar um email após reserva via requisição POST
+  --------------------------------------------------------------------------------------
+*/
+const postMail = async (inputApartamento, inputEspaco, inputData, inputEmail) => {
+    const formData = new FormData();
+    formData.append('morador', inputApartamento);
+    formData.append('espaco', inputEspaco);
+    formData.append('data', inputData);
+    formData.append('email', inputEmail);
+
+    let url = 'http://127.0.0.1:8000/email/reserva';
+    const response = await fetch(url, {
+        method: 'post',
+        body: formData
+    });
+    if (!response.ok) {
+        return response.json().then((data) => {
+            var message = data.message;
+            showToast(message, 'error');
+            return Promise.reject(new Error(message));
+        });
+    }
+    return await response.json();
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar notificações estilizadas
+  --------------------------------------------------------------------------------------
+*/
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.remove();
+    }, 5000);
 }

@@ -107,7 +107,7 @@ const removeElement = () => {
       if (confirm("Você tem certeza?")) {
         div.remove()
         deleteItem(nomeItem)
-        alert("Removido!")
+        showToast("Removido!")
       }
     }
   }
@@ -141,16 +141,15 @@ const newMorador = () => {
   let inputEmail = document.getElementById("novoEmail").value;
 
   if (inputMorador === '' || inputApartamento === '' || inputEmail === '') {
-    alert("Preencha todos os campos!");
+    showToast("Preencha todos os campos!", 'error');
   } else {
     postMorador(inputMorador, inputApartamento, inputEmail)
       .then(() => {
         insertMoradoresList(inputMorador, inputApartamento, inputEmail);
-        alert("Morador adicionado!");
+        showToast("Morador adicionado!");
       })
       .catch((error) => {
-        alert(error);
-        alert("Erro ao adicionar morador");
+        showToast(error, 'error');
       });
   }
 }
@@ -177,4 +176,19 @@ const insertMoradoresList = (nameMorador, apartamento, email) => {
   document.getElementById("novoApartamento").value = "";
 
   removeElement()
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar notificações estilizadas
+  --------------------------------------------------------------------------------------
+*/
+function showToast(message, type = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerText = message;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.remove();
+  }, 5000);
 }

@@ -7,7 +7,7 @@ const getFinanceiro = () => {
   let moradorId = document.getElementById("apartamento").value;
 
   if (moradorId === '') {
-    alert("Informe o número do apartamento!");
+    showToast("Informe o número do apartamento!", 'error');
     return;
   }
 
@@ -28,8 +28,7 @@ const getFinanceiro = () => {
       updateRow(apartamento, valorCondominio);
     })
     .catch((error) => {
-      alert(error);
-      alert("Erro ao buscar informações financeiras");
+      showToast(error, 'error');
     });
 }
 
@@ -71,4 +70,19 @@ const insertRow = (apartamento, valorCondominio) => {
 
   cell1.innerHTML = apartamento;
   cell2.innerHTML = valorCondominio;
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar notificações estilizadas
+  --------------------------------------------------------------------------------------
+*/
+function showToast(message, type = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerText = message;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.remove();
+  }, 5000);
 }

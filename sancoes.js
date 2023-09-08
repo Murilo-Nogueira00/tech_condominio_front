@@ -34,11 +34,11 @@ const newItem = () => {
     let inputData = document.getElementById("data").value;
 
     if (inputMorador === '') {
-        alert("Informe o número do apartamento!");
+        showToast("Informe o número do apartamento!", 'error');
     } else if (inputMotivo === '') {
-        alert("O motivo da advertência deve ser informado!");
+        showToast("O motivo da advertência deve ser informado!", 'error');
     } else if (inputData === '') {
-        alert("Informe a data da ocorrência!");
+        showToast("Informe a data da ocorrência!", 'error');
     } else {
         postItem(inputMorador, inputMotivo, inputData)
             .then((data) => {
@@ -46,18 +46,18 @@ const newItem = () => {
                     const ocorrencia = data.ocorrência[0];
                     const mensagem = `${ocorrencia.tipo} registrada para o morador do apartamento: ${ocorrencia.morador}. 
                     \nMotivo: ${ocorrencia.motivo}`;
-                    alert(mensagem);
+                    showToast(mensagem);
                 }
 
                 if(data.ocorrência[1]) {
                     const multa = data.ocorrência[1];
                     const mensagem = `${multa.tipo} registrada para o morador do apartamento: ${multa.morador}. 
                     \nMotivo: ${multa.motivo}`;
-                    alert(mensagem);                    
+                    showToast(mensagem);                    
                 }
             })
             .catch((error) => {
-                alert(error);
+                showToast(error, 'error');
             });
     }
 }
@@ -100,12 +100,11 @@ const getOcorrencias = () => {
                 const ocorrencias = data.ocorrência;
                 updateTable(ocorrencias);
             } else {
-                alert('Nenhuma ocorrência encontrada');
+                showToast('Nenhuma ocorrência encontrada');
             }
         })
         .catch((error) => {
-            alert(error);
-            alert("Erro ao buscar ocorrências");
+            showToast(error, 'error');
         });
 }
 
@@ -113,3 +112,17 @@ const newSearch = () => {
     getOcorrencias();
 }
 
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar notificações estilizadas
+  --------------------------------------------------------------------------------------
+*/
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.remove();
+    }, 5000);
+}
