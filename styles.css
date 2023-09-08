@@ -44,14 +44,14 @@ nav a {
     left: 0%;
     width: 28%;
     height: 70px;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(226, 163, 112, 0.20);
     z-index: 0;
 }
 
 .page-title h2,
 .page-title p {
     position: absolute;
-    color: white;
+    color: rgb(0, 0, 0);
     left: 2%;
 }
 
@@ -137,7 +137,7 @@ nav a {
 }
 
 .addBtn {
-    background: linear-gradient(160deg, #a00ee4, #0a0ef1);
+    background: linear-gradient(160deg, #1f07a5, #0996b9);
     height: 38px;
     padding: 0 20px;
     line-height: 35px;
@@ -223,83 +223,63 @@ nav a {
     font-size: 18px;
 }
 
-#novoMorador {
-    margin: 0;
-    border: 1px solid rgb(35, 32, 24);
-    width: 25%;
-    padding: 10px;
-    font-size: 16px;
+table {
+    border: none;
+    width: 90%;
+    margin-left: 5%;
 }
 
-#novoApartamento {
-    margin: 0;
-    border: 1px solid rgb(35, 32, 24);
-    width: 8%;
-    padding: 10px;
-    font-size: 16px;
-}
-
-#novoEmail {
-    margin: 0;
-    border: 1px solid rgb(35, 32, 24);
-    width: 8%;
-    padding: 10px;
-    font-size: 16px;
-}
-
-.items {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    /* Adicionado para definir a orientação em coluna */
-    align-items: center;
-    /* Adicionado para centralizar horizontalmente */
-    text-align: center;
-    /* Adicionado para centralizar o texto */
-}
-
-.lixeira-img {
-    display: block;
-    margin: 0 auto;
-    width: 35%;
-    height: auto;
-}
-
-.close:hover {
-    color: #f44336;
-    font-weight: bolder;
-}
-
-table,
 th,
 td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    cursor: pointer;
-    position: relative;
-    padding: 12px 8px 12px 10px;
+    border: none;
+    padding: 12px 8px;
     font-size: 18px;
     transition: 0.2s;
-    text-align: start;
-}
-
-table {
-    background-color: white;
-    width: 80%;
-}
-
-tr:nth-child(odd) {
-    background-color: #eee;
+    text-align: left;
 }
 
 th:nth-child(1) {
-    width: 80%;
+    width: 60%;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid #ccc;
 }
 
 tr:hover {
     background: rgb(200, 199, 199);
+}
+
+.lixeira-img {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+
+table td:last-child {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close {
+    background-color: transparent;
+    border: none;
+    font-size: larger;
+    cursor: pointer;
+    color: red;
+}
+
+/* Centralizando o conteúdo das colunas */
+table th:nth-child(2),
+table td:nth-child(2),
+table th:nth-child(3),
+table td:nth-child(3),
+table th:nth-child(4),
+table td:nth-child(4) {
+    text-align: center;
+    vertical-align: middle;
 }
 
 /* ******************RODAPÉ****************** */
@@ -308,7 +288,7 @@ footer {
     text-align: center;
     margin-top: 50px;
     padding: 1px;
-    background: rgb(206, 206, 206);
+    background-color: rgba(116, 97, 82, 0.37);
 }
 
 .copyright {

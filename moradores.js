@@ -84,12 +84,18 @@ const postMorador = async (inputMorador, inputApartamento, inputEmail) => {
   --------------------------------------------------------------------------------------
 */
 const insertButton = (parent) => {
-  let span = document.createElement("span");
-  let txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  parent.appendChild(span);
+  let btn = document.createElement("button");
+  btn.className = "close";
+
+  let img = document.createElement("img");
+  img.src = "https://i.imgur.com/BW7apf6.png"; // URL da imagem da lixeira
+  img.alt = "Deletar";
+  img.className = "lixeira-img";
+
+  btn.appendChild(img);
+  parent.appendChild(btn);
 }
+
 
 
 /*
