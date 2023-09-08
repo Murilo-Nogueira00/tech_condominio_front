@@ -86,3 +86,10 @@ function showToast(message, type = 'success') {
     toast.remove();
   }, 5000);
 }
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar status da API de emails
+  --------------------------------------------------------------------------------------
+*/
+updateAPIIndicator();

@@ -107,7 +107,9 @@ const getOcorrencias = () => {
         .then((data) => {
             if (data.ocorrência && data.ocorrência.length > 0) {
                 const ocorrencias = data.ocorrência;
-                updateTable(ocorrencias);
+                ocorrencias.forEach(ocorrencia => {
+                    insertSancaoList(ocorrencia.motivo, ocorrencia.tipo, ocorrencia.morador, ocorrencia.data);
+                });
             } else {
                 showToast('Nenhuma ocorrência encontrada');
             }
@@ -116,6 +118,7 @@ const getOcorrencias = () => {
             showToast(error, 'error');
         });
 }
+
 
 const newSearch = () => {
     getOcorrencias();
@@ -163,3 +166,33 @@ function showToast(message, type = 'success') {
         toast.remove();
     }, 5000);
 }
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para inserir dados de Sanções na lista apresentada
+  --------------------------------------------------------------------------------------
+*/
+const insertSancaoList = (motivo, tipo, morador, data) => {
+    let item = [motivo, tipo, morador, data];
+    var table = document.getElementById('sancaoTable');
+    var row = table.insertRow();
+
+    for (var i = 0; i < item.length; i++) {
+        var cel = row.insertCell(i);
+        cel.textContent = item[i];
+    }
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Chamada da função para carregamento inicial dos dados
+  --------------------------------------------------------------------------------------
+*/
+getOcorrencias()
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar status da API de emails
+  --------------------------------------------------------------------------------------
+*/
+updateAPIIndicator();

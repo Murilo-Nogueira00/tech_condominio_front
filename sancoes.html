@@ -22,6 +22,10 @@
 <body>
     <!-- Cabeçalho de informações do sistema -->
     <header>
+        <div id="api-status-container">
+            <img src="https://i.imgur.com/E9DSzrL.png" alt="Logo API" id="api-logo" />
+            <div id="api-status-indicator"></div>
+        </div>
         <div class="menu">
             <nav>
                 <ul class="texto-topo">
@@ -62,11 +66,6 @@
         </section>
     </div>
 
-    <!-- Opções para consultar uma reserva -->
-    <section class="newSearch">
-        <span onclick="newSearch()" class="addBtn">Consultar Ocorrências</span>
-    </section>
-
     <!-- Tabela com itens existentes -->
     <section class="items">
         <table id="sancaoTable">
@@ -81,17 +80,7 @@
         </table>
     </section>
 
-    <!-- <section class="items">
-        <table id="sancaoTable">
-            <tr>
-                <th style = "font-family: Georgia, serif;">Motivo</th>
-                <th style = "font-family: Georgia, serif;">Tipo</th>
-                <th style = "font-family: Georgia, serif;">Apartamento</th>
-                <th style = "font-family: Georgia, serif;">Data</th>
-            </tr>
-        </table>
-    </section> -->
-
+    <script src="globalFunctions.js"></script>
     <script src="moradores.js"></script>
     <script src="sancoes.js"></script>
 

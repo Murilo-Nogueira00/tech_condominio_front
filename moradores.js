@@ -1,5 +1,3 @@
-
-
 /*
   --------------------------------------------------------------------------------------
   Função para obter a lista existente do servidor via requisição GET
@@ -198,3 +196,10 @@ function showToast(message, type = 'success') {
     toast.remove();
   }, 5000);
 }
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar status da API de emails
+  --------------------------------------------------------------------------------------
+*/
+updateAPIIndicator();

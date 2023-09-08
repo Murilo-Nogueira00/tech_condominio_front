@@ -95,7 +95,9 @@ const getReservas = () => {
         .then((data) => {
             if (data.reserva && data.reserva.length > 0) {
                 const reservas = data.reserva;
-                updateTable(reservas);
+                reservas.forEach(reserva => {
+                    insertReservaList(reserva.apartamento, reserva.espaco, reserva.data);
+                });
             } else {
                 alert('Nenhuma reserva encontrada');
             }
@@ -105,6 +107,7 @@ const getReservas = () => {
             alert("Erro ao buscar reservas");
         });
 }
+
 
 
 const newSearch = () => {
@@ -164,3 +167,33 @@ function showToast(message, type = 'success') {
         toast.remove();
     }, 5000);
 }
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para inserir dados de Reservas na lista apresentada
+  --------------------------------------------------------------------------------------
+*/
+const insertReservaList = (apartamento, espaco, data) => {
+    let item = [apartamento, espaco, data];
+    var table = document.getElementById('reservaTable');
+    var row = table.insertRow();
+
+    for (var i = 0; i < item.length; i++) {
+        var cel = row.insertCell(i);
+        cel.textContent = item[i];
+    }
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Chamada da função para carregamento inicial dos dados
+  --------------------------------------------------------------------------------------
+*/
+getReservas()
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para mostrar status da API de emails
+  --------------------------------------------------------------------------------------
+*/
+updateAPIIndicator();

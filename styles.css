@@ -13,13 +13,35 @@ li {
 
 /* Cabeçalho e Menu */
 header {
-    padding: 20px 0;
+    padding: 0px 0;
     position: relative;
+}
+
+#api-status-container {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+#api-logo {
+    height: 20px;
+    top: 20px;
+    width: auto;
+    margin-right: 10px;
+}
+
+#api-status-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    border: 2px solid black;
 }
 
 .menu {
     position: absolute;
-    top: 20px;
+    top: 16px;
     right: 0;
 }
 
@@ -40,11 +62,11 @@ nav a {
 
 .title-bg {
     position: absolute;
-    top: 110px;
+    top: 108px;
     left: 0%;
     width: 28%;
     height: 70px;
-    background-color: rgba(226, 163, 112, 0.20);
+    background-color: rgba(226, 163, 112, 0.15);
     z-index: 0;
 }
 
@@ -56,11 +78,11 @@ nav a {
 }
 
 .page-title h2 {
-    margin-top: 90px;
+    margin-top: 70px;
 }
 
 .page-title p {
-    margin-top: 130px;
+    margin-top: 110px;
 }
 
 #header-image {
