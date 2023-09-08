@@ -53,7 +53,7 @@ const newReserva = () => {
             })
             .then(data => {
                 email = data.email;
-                return postMail(inputApartamento, inputEspaco, inputData, email);
+                return postMailReserva(inputApartamento, inputEspaco, inputData, email);
             })
             .catch((error) => {
                 showToast(error.message || error, 'error');
@@ -128,7 +128,7 @@ const insertRow = (table, apartamento, espaco, data) => {
   Função para enviar um email após reserva via requisição POST
   --------------------------------------------------------------------------------------
 */
-const postMail = async (inputApartamento, inputEspaco, inputData, inputEmail) => {
+const postMailReserva = async (inputApartamento, inputEspaco, inputData, inputEmail) => {
     const formData = new FormData();
     formData.append('morador', inputApartamento);
     formData.append('espaco', inputEspaco);

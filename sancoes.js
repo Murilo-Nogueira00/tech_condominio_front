@@ -3,7 +3,7 @@
   Função para colocar uma ocorrência na lista do servidor via requisição POST
   --------------------------------------------------------------------------------------
 */
-const postItem = async (inputMorador, inputMotivo, inputData) => {
+const postSancao = async (inputMorador, inputMotivo, inputData) => {
     const formData = new FormData();
     formData.append('morador', inputMorador);
     formData.append('motivo', inputMotivo);
@@ -28,10 +28,12 @@ const postItem = async (inputMorador, inputMotivo, inputData) => {
   Função para adicionar uma nova ocorrência informando morador, motivo e data 
   --------------------------------------------------------------------------------------
 */
-const newItem = () => {
+const newSancao = () => {
     let inputMorador = document.getElementById("apartamento").value;
     let inputMotivo = document.getElementById("motivo").value;
     let inputData = document.getElementById("data").value;
+    let ocorrencia;
+    let email;
 
     if (inputMorador === '') {
         showToast("Informe o número do apartamento!", 'error');
@@ -40,31 +42,38 @@ const newItem = () => {
     } else if (inputData === '') {
         showToast("Informe a data da ocorrência!", 'error');
     } else {
-        postItem(inputMorador, inputMotivo, inputData)
+        postSancao(inputMorador, inputMotivo, inputData)
             .then((data) => {
                 if (data && data.ocorrência && data.ocorrência.length > 0) {
-                    const ocorrencia = data.ocorrência[0];
-                    const mensagem = `${ocorrencia.tipo} registrada para o morador do apartamento: ${ocorrencia.morador}. 
-                    \nMotivo: ${ocorrencia.motivo}`;
+                    ocorrencia = data.ocorrência;
+                    const mensagem = `${ocorrencia[0].tipo} registrada para o morador do apartamento: ${ocorrencia[0].morador}. 
+                    \nMotivo: ${ocorrencia[0].motivo}`;
                     showToast(mensagem);
                 }
 
-                if(data.ocorrência[1]) {
-                    const multa = data.ocorrência[1];
-                    const mensagem = `${multa.tipo} registrada para o morador do apartamento: ${multa.morador}. 
-                    \nMotivo: ${multa.motivo}`;
+                if (ocorrencia[1]) {
+                    const mensagem = `${ocorrencia[1].tipo} registrada para o morador do apartamento: ${ocorrencia[1].morador}. 
+                    \nMotivo: ${ocorrencia[1].motivo}`;
                     showToast(mensagem);                    
+                }
+                return getMorador(inputMorador);
+            })
+            .then(data => {
+                email = data.email;
+                postMailSancao(inputMorador, ocorrencia[0].tipo, inputMotivo, inputData, email);
+                if (ocorrencia[1]) {
+                    postMailSancao(inputMorador, ocorrencia[1].tipo, inputMotivo, inputData, email);
                 }
             })
             .catch((error) => {
-                showToast(error, 'error');
+                showToast(error.message || error, 'error');
             });
     }
 }
 
 const updateTable = (ocorrencias) => {
     // Limpar as linhas de dados da tabela
-    const table = document.getElementById("myTable");
+    const table = document.getElementById("sancaoTable");
     const rows = table.querySelectorAll("tr:not(:first-child)");
     rows.forEach((row) => row.remove());
 
@@ -110,6 +119,34 @@ const getOcorrencias = () => {
 
 const newSearch = () => {
     getOcorrencias();
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para enviar um email após ocorrência via requisição POST
+  --------------------------------------------------------------------------------------
+*/
+const postMailSancao = async (inputApartamento, inputTipo, inputMotivo, inputData, inputEmail) => {
+    const formData = new FormData();
+    formData.append('morador', inputApartamento);
+    formData.append('tipo', inputTipo);
+    formData.append('motivo', inputMotivo);
+    formData.append('data', inputData);
+    formData.append('email', inputEmail);
+
+    let url = 'http://127.0.0.1:8000/email/sancao';
+    const response = await fetch(url, {
+        method: 'post',
+        body: formData
+    });
+    if (!response.ok) {
+        return response.json().then((data) => {
+            var message = data.message;
+            showToast(message, 'error');
+            return Promise.reject(new Error(message));
+        });
+    }
+    return await response.json();
 }
 
 /*

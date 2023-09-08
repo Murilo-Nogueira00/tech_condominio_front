@@ -128,34 +128,6 @@ nav a:active {
     clear: both;
 }
 
-.newMorador {
-    background: #fafafa;
-    padding: 30px 40px;
-    color: white;
-    display: flex;
-    justify-content: center;
-}
-
-.newMorador:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.newReserva {
-    background: #fafafa;
-    padding: 30px 40px;
-    color: white;
-    display: flex;
-    justify-content: center;
-}
-
-.newReserva:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
 .newSearch {
     background: #fafafa;
     padding: 30px 40px;
