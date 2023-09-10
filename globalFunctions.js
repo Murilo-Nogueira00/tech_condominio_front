@@ -20,7 +20,7 @@ const updateAPIIndicator = async () => {
 
     const indicator = document.getElementById("api-status-indicator");
     if (isAPIWorking) {
-        indicator.style.backgroundColor = "#00FF00"; // Verde claro
+        indicator.style.backgroundColor = "#00FF00";
     } else {
         indicator.style.backgroundColor = "red";
     }
