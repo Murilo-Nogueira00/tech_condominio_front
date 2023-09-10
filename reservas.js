@@ -49,11 +49,14 @@ const newReserva = () => {
                     \nValor da reserva: R$ ${reserva["valor da reserva"]}`;
                     showToast(mensagem);
                 }
+                getReservas();
                 return getMorador(inputApartamento);
             })
             .then(data => {
                 email = data.email;
                 return postMailReserva(inputApartamento, inputEspaco, inputData, email);
+            }).then(() => {
+                showToast("E-mail enviado com sucesso para o morador!");
             })
             .catch((error) => {
                 showToast(error.message || error, 'error');
@@ -94,6 +97,8 @@ const getReservas = () => {
         })
         .then((data) => {
             if (data.reserva && data.reserva.length > 0) {
+                const table = document.getElementById("reservaTable");
+                table.querySelectorAll("tr:not(:first-child)").forEach((row) => row.remove());
                 const reservas = data.reserva;
                 reservas.forEach(reserva => {
                     insertReservaList(reserva.apartamento, reserva.espaco, reserva.data);
