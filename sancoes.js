@@ -111,9 +111,6 @@ const getOcorrencias = () => {
                     insertSancaoList(ocorrencia.motivo, ocorrencia.tipo, ocorrencia.morador, ocorrencia.data);
                 });
             }
-        })
-        .catch((error) => {
-            showToast(error, 'error');
         });
 }
 

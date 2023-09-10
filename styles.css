@@ -1,6 +1,7 @@
 /* Reset CSS */
 body, html {
     padding: 0;
+    margin: 0;
 }
 
 ul,
@@ -10,6 +11,33 @@ li {
 }
 /* ******************CABEÇALHO****************** */
 
+/* Cabeçalho Home */
+
+.header-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-bottom: 3px solid black;
+    width: 100%;
+}
+
+.logo-header {
+    width: 200px;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 70px;
+    bottom: 110px;
+    left: 0;
+    right: 0;
+    background-image: url('https://i.imgur.com/251Jyhh.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    z-index: -1;
+}
 
 /* Cabeçalho e Menu */
 header {
@@ -66,7 +94,7 @@ nav a {
     left: 0%;
     width: 28%;
     height: 70px;
-    background-color: rgba(226, 163, 112, 0.15);
+    background-color: rgba(235, 191, 155, 0.1);
     z-index: 0;
 }
 
@@ -121,9 +149,27 @@ nav a {
     border: 1px solid rgb(35, 32, 24) !important;
     padding: 5px 10px !important;
     font-size: 16px !important;
+    border-radius: 10px;
 }
 
 .add-box .newItem .input-group label {
+    font-weight: bold !important;
+    margin-bottom: 5px !important;
+}
+
+.consult-box .newItem .input-group input[type="text"] {
+    flex: 1 !important;
+    margin-right: 10px !important;
+    height: 35px !important;
+    max-width: 180px !important;
+    width: 100% !important;
+    border: 1px solid rgb(35, 32, 24) !important;
+    padding: 5px 10px !important;
+    font-size: 16px !important;
+    border-radius: 10px;
+}
+
+.consult-box .newItem .input-group label {
     font-weight: bold !important;
     margin-bottom: 5px !important;
 }
@@ -159,7 +205,7 @@ nav a {
 }
 
 .addBtn {
-    background: linear-gradient(160deg, #1f07a5, #0996b9);
+    background: linear-gradient(160deg, #b87223, #c9aa72);
     height: 38px;
     padding: 0 20px;
     line-height: 35px;
@@ -177,8 +223,7 @@ nav a {
 }
 
 .addBtn:hover {
-    background: linear-gradient(160deg, #0996b9, #1f07a5);
-    color: rgb(245, 209, 209);
+    background: linear-gradient(160deg, #c9aa72, #b87223);
 }
 
 .newSearch {
@@ -208,6 +253,7 @@ nav a {
 }
 
 .home li {
+    background-color: rgba(255, 255, 255, 0.7);
     cursor: pointer;
     display: inline-block;
     text-align: center;
@@ -218,18 +264,22 @@ nav a {
     box-sizing: border-box;
     border: 2px solid #000000;
     border-radius: 5px 15px 15px 15px;
+    font-family: 'Open Sans', sans-serif;
+    transition: transform 0.3s;
+    transform-origin: center center;
+}
+
+.home li p {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .home li:hover {
     border-color: #409407;
+    transform: scale(1.05);
 }
 
 .home li:active {
     border-color: #0ad626;
-}
-
-.home li:hover h2 {
-    font-size: 20px;
 }
 
 .home img {
@@ -311,7 +361,8 @@ footer {
     text-align: center;
     margin-top: 50px;
     padding: 1px;
-    background-color: rgba(116, 97, 82, 0.37);
+    background-color: rgba(218, 209, 204, 0.37);
+    z-index: 1;
 }
 
 .copyright {

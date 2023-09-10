@@ -99,9 +99,6 @@ const getReservas = () => {
                     insertReservaList(reserva.apartamento, reserva.espaco, reserva.data);
                 });
             }
-        })
-        .catch((error) => {
-            showToast(error);
         });
 }
 
