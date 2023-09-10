@@ -110,8 +110,6 @@ const getOcorrencias = () => {
                 ocorrencias.forEach(ocorrencia => {
                     insertSancaoList(ocorrencia.motivo, ocorrencia.tipo, ocorrencia.morador, ocorrencia.data);
                 });
-            } else {
-                showToast('Nenhuma ocorrência encontrada');
             }
         })
         .catch((error) => {

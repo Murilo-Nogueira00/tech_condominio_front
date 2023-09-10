@@ -98,13 +98,10 @@ const getReservas = () => {
                 reservas.forEach(reserva => {
                     insertReservaList(reserva.apartamento, reserva.espaco, reserva.data);
                 });
-            } else {
-                alert('Nenhuma reserva encontrada');
             }
         })
         .catch((error) => {
-            alert(error);
-            alert("Erro ao buscar reservas");
+            showToast(error);
         });
 }
 
